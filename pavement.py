@@ -203,6 +203,8 @@ def compile(args):
                 dependencies
             ))
 
+            compiler_flags.append("""--module_wrapper %s:'(function(){"use strict";%%s}());'""" % js_file[:-3])
+
     # Run the compilation
     sh('java -jar %s %s' % (
         options.closure_compiler,
