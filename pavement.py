@@ -95,7 +95,7 @@ def lint():
 
     lint_flag.touch()
 
-    for file in options.src_dir.files('*.js'):
+    for file in options.src_dir.walkfiles('*.js'):
         if not last_run or (last_run < file.mtime):
             sh('%s %s' % (
                 options.closure_lint,
@@ -105,7 +105,7 @@ def lint():
 @task
 def fix_lint():
     """Run Closure lint fixer on all source files"""
-    for file in options.src_dir.files('*.js'):
+    for file in options.src_dir.walkfiles('*.js'):
         sh('%s %s' % (
             options.closure_fix_lint,
             file
