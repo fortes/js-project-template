@@ -156,6 +156,9 @@ def compile(args):
         compiler_flags.append('--debug=true')
         compiler_flags.append('--formatting=PRETTY_PRINT')
         compiler_flags.append('--formatting=PRINT_INPUT_DELIMITER')
+    else:
+        # Let code know modules are not being used
+        compiler_flags.append('--define="goog.DEBUG=false"')
 
     # Externs definitions
     if options.externs_dir.isdir():
